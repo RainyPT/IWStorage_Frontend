@@ -1,10 +1,10 @@
-import "./index.css";
+import "../index.css";
+import Header from "../Components/Header.js";
+import Footer from "../Components/Footer";
+import { Link, useNavigate } from "react-router-dom";
 import { Container, Row, Col, Button } from "react-bootstrap";
-import Header from "./Components/Header";
-import Footer from "./Components/Footer";
-import { useNavigate } from "react-router-dom";
 
-function App() {
+function PageNotFound() {
   const navigate = useNavigate();
   return (
     <>
@@ -13,26 +13,22 @@ function App() {
         <Container>
           <Row>
             <Col>
-              <h3>Welcome to</h3>
+              <h3>404</h3>
             </Col>
           </Row>
           <Row>
             <Col>
-              <h1>IWStorage</h1>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <p>Your cloud storage solution!</p>
+              <h1>Page Not Found!</h1>
             </Col>
           </Row>
           <Row>
             <Col>
               <Button
-                variant="outline-primary"
-                onClick={() => navigate("dashboard")}
+                onClick={() => {
+                  navigate("login");
+                }}
               >
-                Start here!
+                Back to Civilization
               </Button>
             </Col>
           </Row>
@@ -43,4 +39,4 @@ function App() {
   );
 }
 
-export default App;
+export default PageNotFound;
