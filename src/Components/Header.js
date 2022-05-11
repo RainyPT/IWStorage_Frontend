@@ -8,14 +8,20 @@ import { logoutReq } from "../ReqLib";
 export default function Header() {
   const navigate = useNavigate();
   const [username, setUsername] = useState(null);
+  const [profileDirectory, setProfileDirectory] = useState("/profile");
 
   const logout = async () => {
-    logoutReq().then((res) => navigate("/"));
+    logoutReq()
+      .then((res) => navigate("/"))
+      .catch((e) => console.log(e));
   };
 
   useEffect(() => {
     usernameHeaderReq().then(({ data }) => {
-      setUsername(data.user[0].username);
+      if (data) {
+        setUsername(data.user[0].username);
+        setProfileDirectory("/profile/" + data.user[0].username);
+      }
     });
   }, []);
   return (
@@ -37,7 +43,7 @@ export default function Header() {
             <Navbar.Text>
               {username ? (
                 <>
-                  Signed in as <Link to="/profile">{username}</Link>{" "}
+                  Signed in as <Link to={profileDirectory}>{username}</Link>{" "}
                   <Button
                     size="sm"
                     style={{ marginLeft: "20px" }}

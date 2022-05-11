@@ -9,6 +9,7 @@ import Dashboard from "./Pages/Dashboard";
 import "bootstrap/dist/css/bootstrap.min.css";
 import PageNotFound from "./Pages/PageNotFound";
 import ProtectedRoutes from "./ProtectedRoutes";
+import Profile from "./Pages/Profile";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
@@ -20,7 +21,9 @@ root.render(
         <Route element={<ProtectedRoutes />}>
           <Route path="dashboard" element={<Dashboard />} />
         </Route>
-
+        <Route element={<ProtectedRoutes />}>
+          <Route path="profile/:id" element={<Profile />} />
+        </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>

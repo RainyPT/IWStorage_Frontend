@@ -52,6 +52,20 @@ code {
   padding: 1.5rem;
   text-align: center;
 }
+.profile{
+  background-color: #282c34;
+  min-height: 100vh;
+  padding: 1.5rem;
+}
+.fileCardDiv{
+  display: table;
+  margin: 0 auto;
+  padding: 10px;
+  color: #282c34;
+}
+.fileCard:hover{
+  box-shadow:  0 0 10px gainsboro;
+}
 .formbox{
   padding: 20px;
   background-color: #212529;

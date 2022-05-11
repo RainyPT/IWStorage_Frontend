@@ -1,4 +1,5 @@
 const axios = require("axios");
+const JsFileDownloader = require("js-file-downloader");
 const axiosInstance = axios.create({
   withCredentials: true,
   baseURL: "http://localhost:3001/",
@@ -78,6 +79,33 @@ export const logoutReq = async () => {
   try {
     const res = await axiosInstance.get("logout");
     return res;
+  } catch (err) {
+    return err;
+  }
+};
+export const fileUploadReq = async (reqObj) => {
+  try {
+    const res = await axiosInstance.post("file/upload", reqObj);
+    return res;
+  } catch (err) {
+    return err;
+  }
+};
+export const getUserFiles = async () => {
+  try {
+    const res = await axiosInstance.get("getUserFiles");
+    return res;
+  } catch (err) {
+    return err;
+  }
+};
+export const getFile = async (filename) => {
+  try {
+    return new JsFileDownloader({
+      url: "http://localhost:3001/download?filename=" + filename,
+      withCredentials: true,
+      filename: filename,
+    });
   } catch (err) {
     return err;
   }
