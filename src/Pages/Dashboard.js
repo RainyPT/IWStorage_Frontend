@@ -21,7 +21,6 @@ function Dashboard() {
   const [isLoading, setIsLoading] = useState(false);
   const [userFiles, setUserFiles] = useState([]);
   const [file2Upload, setFile2Upload] = useState({
-    title: "",
     file: null,
     description: "",
   });
@@ -39,14 +38,9 @@ function Dashboard() {
   };
   const handleShow = () => setShow(true);
   const handleUpload = () => {
-    if (
-      file2Upload.title.length > 0 &&
-      file2Upload.description.length > 0 &&
-      file2Upload.file != null
-    ) {
+    if (file2Upload.description.length > 0 && file2Upload.file != null) {
       setIsLoading(true);
       const formData = new FormData();
-      formData.append("title", file2Upload.title);
       formData.append("description", file2Upload.description);
       formData.append("uploaded_file", file2Upload.file);
       fileUploadReq(formData)
@@ -64,12 +58,6 @@ function Dashboard() {
     setFile2Upload((prevState) => ({
       ...prevState,
       file: e.target.files[0],
-    }));
-  };
-  const onFileTitleChange = (e) => {
-    setFile2Upload((prevState) => ({
-      ...prevState,
-      title: e.target.value,
     }));
   };
   const onFileDescChange = (e) => {
@@ -91,14 +79,6 @@ function Dashboard() {
             <></>
           )}
           <Form>
-            <Form.Group className="mb-3">
-              <Form.Label>File Title</Form.Label>
-              <Form.Control
-                type="text"
-                autoFocus
-                onChange={onFileTitleChange}
-              />
-            </Form.Group>
             <Form.Group controlId="formFile" className="mb-3">
               <Form.Label>Choose File</Form.Label>
               <Form.Control
@@ -112,6 +92,7 @@ function Dashboard() {
               <Form.Control
                 as="textarea"
                 rows={3}
+                maxLength={200}
                 onChange={onFileDescChange}
               />
             </Form.Group>
@@ -176,9 +157,10 @@ function Dashboard() {
               userFiles.map((uf, index) => (
                 <Col key={index} md="4">
                   <FileCard
-                    title={uf.title}
                     filename={uf.filename}
+                    type={uf.type}
                     description={uf.description}
+                    dateadded={uf.DateAdded}
                   />
                 </Col>
               ))

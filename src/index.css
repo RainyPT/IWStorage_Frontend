@@ -63,9 +63,6 @@ code {
   padding: 10px;
   color: #282c34;
 }
-.fileCard:hover{
-  box-shadow:  0 0 10px gainsboro;
-}
 .formbox{
   padding: 20px;
   background-color: #212529;

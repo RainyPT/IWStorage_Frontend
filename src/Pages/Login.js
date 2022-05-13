@@ -28,17 +28,23 @@ function Login() {
       userCredentials.password.length > 0
     ) {
       setIsLoading(true);
-      loginReq(userCredentials).then(({ data }) => {
-        if (!data.ack) {
-          setError({
-            show: true,
-            type: "warning",
-            message: "Wrong Credentials",
-          });
-        } else {
-          navigate("/dashboard");
-        }
-      });
+      loginReq(userCredentials)
+        .then(({ data }) => {
+          console.log(data.ack);
+          if (data.ack) {
+            navigate("/dashboard");
+          } else {
+            setError({
+              show: true,
+              type: "warning",
+              message: data.message,
+            });
+          }
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+      setIsLoading(false);
     } else {
       setError({
         show: true,

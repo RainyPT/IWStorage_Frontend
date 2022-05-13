@@ -102,7 +102,7 @@ export const getUserFiles = async () => {
 export const getFile = async (filename) => {
   try {
     return new JsFileDownloader({
-      url: "http://localhost:3001/download?filename=" + filename,
+      url: axiosInstance.defaults.baseURL + "download?filename=" + filename,
       withCredentials: true,
       filename: filename,
     });

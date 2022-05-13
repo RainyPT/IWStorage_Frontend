@@ -1,12 +1,18 @@
 import "../index.css";
 import Header from "../Components/Header.js";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "../Components/Footer";
 import { Container, Row, Col, Button, Card } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import default_user_image from "../Imgs/default_user_image.png";
 function Profile() {
   let { id } = useParams();
+
+  /*useEffect(() => {
+    getUserProfile(id).then((res) => {
+      setUserFiles(res.data);
+    });
+  }, []);*/
   return (
     <>
       <Header />
