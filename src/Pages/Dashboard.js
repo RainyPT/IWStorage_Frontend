@@ -24,7 +24,7 @@ function Dashboard() {
     file: null,
     description: "",
   });
-  const [isError, setIsError] = useState(false);
+  const [isError, setIsError] = useState({ show: false, message: "" });
 
   useEffect(() => {
     getUserFiles().then((res) => {
@@ -34,7 +34,7 @@ function Dashboard() {
 
   const handleClose = () => {
     setShow(false);
-    setIsError(false);
+    setIsError({ show: false, message: "" });
   };
   const handleShow = () => setShow(true);
   const handleUpload = () => {
@@ -44,14 +44,18 @@ function Dashboard() {
       formData.append("description", file2Upload.description);
       formData.append("uploaded_file", file2Upload.file);
       fileUploadReq(formData)
-        .then((res) => {
+        .then(({ data }) => {
           setIsLoading(false);
-          handleClose();
-          window.location.reload();
+          if (data.ack) {
+            handleClose();
+            window.location.reload();
+          } else {
+            setIsError({ show: true, message: "Duplicated file name!" });
+          }
         })
         .catch((e) => alert("Something went very wrong!"));
     } else {
-      setIsError(true);
+      setIsError({ show: true, message: "Fill all Fields!" });
     }
   };
   const onFileChange = (e) => {
@@ -73,8 +77,8 @@ function Dashboard() {
           <Modal.Title>Upload File</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {isError ? (
-            <Alert variant="warning">Please fill all fields</Alert>
+          {isError.show ? (
+            <Alert variant="warning">{isError.message}</Alert>
           ) : (
             <></>
           )}
