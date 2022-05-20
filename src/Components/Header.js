@@ -19,8 +19,8 @@ export default function Header() {
   useEffect(() => {
     usernameHeaderReq().then(({ data }) => {
       if (data) {
-        setUsername(data.user[0].username);
-        setProfileDirectory("/profile/" + data.user[0].username);
+        setUsername(data.user.username);
+        setProfileDirectory("/profile/" + data.user.username);
       }
     });
   }, []);

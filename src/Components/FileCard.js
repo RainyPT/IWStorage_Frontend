@@ -12,7 +12,7 @@ export default function FileCard(props) {
         <Card.Img variant="top" src={default_file_image} />
         <Card.Body>
           <Card.Title>
-            {atob(props.filename).split("-")[1] + props.type}
+            {atob(props.filename).split("-")[0] + props.type}
           </Card.Title>
           <Card.Text>{props.description} </Card.Text>
           <Button variant="primary" onClick={handleDownload}>
