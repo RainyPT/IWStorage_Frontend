@@ -48,7 +48,9 @@ function Dashboard() {
           setIsLoading(false);
           if (data.ack) {
             handleClose();
-            window.location.reload();
+            getUserFiles().then((res) => {
+              setUserFiles(res.data);
+            });
           } else {
             setIsError({ show: true, message: "Duplicated file name!" });
           }
