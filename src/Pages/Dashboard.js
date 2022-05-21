@@ -37,7 +37,8 @@ function Dashboard() {
     setIsError({ show: false, message: "" });
   };
   const handleShow = () => setShow(true);
-  const handleUpload = () => {
+  const handleUpload = (e) => {
+    e.preventDefault();
     if (file2Upload.description.length > 0 && file2Upload.file != null) {
       setIsLoading(true);
       const formData = new FormData();
