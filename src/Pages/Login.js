@@ -30,7 +30,6 @@ function Login() {
       setIsLoading(true);
       loginReq(userCredentials)
         .then(({ data }) => {
-          console.log(data.ack);
           if (data.ack) {
             navigate("/dashboard");
           } else {

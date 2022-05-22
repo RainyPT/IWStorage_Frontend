@@ -2,7 +2,7 @@ const axios = require("axios");
 const JsFileDownloader = require("js-file-downloader");
 const axiosInstance = axios.create({
   withCredentials: true,
-  baseURL: "http://ec2-13-38-130-5.eu-west-3.compute.amazonaws.com:3001/",
+  baseURL: "http://localhost:3001",
   headers: {
     "Content-Type": "application/json;charset=utf-8",
   },

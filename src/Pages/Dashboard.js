@@ -48,7 +48,7 @@ function Dashboard() {
         .then(({ data }) => {
           setIsLoading(false);
           if (data.ack) {
-            handleClose();
+            setShow(false);
             getUserFiles().then((res) => {
               setUserFiles(res.data);
             });
@@ -109,7 +109,11 @@ function Dashboard() {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleUpload} disabled={isLoading}>
+          <Button
+            variant="primary"
+            onClick={(e) => handleUpload(e)}
+            disabled={isLoading}
+          >
             {isLoading ? (
               <>
                 <Spinner

@@ -34,6 +34,12 @@ function Register() {
         if (data.ack === 1) {
           setIsLoading(false);
           setJustRegistered(true);
+        } else {
+          setError({
+            show: true,
+            type: "warning",
+            message: data.message,
+          });
         }
       });
     } else {
